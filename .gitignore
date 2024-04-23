@@ -4,6 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 appsettings.json
+reactivities.db
+Migrations
 
 # User-specific files
 *.rsuser
