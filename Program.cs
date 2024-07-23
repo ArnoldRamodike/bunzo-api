@@ -1,7 +1,14 @@
+using Bulky.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("AppConnectionString"),
+    ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("AppConnectionString"))));
 
 var app = builder.Build();
 
