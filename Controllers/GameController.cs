@@ -15,16 +15,16 @@ namespace papaute.Controllers
             var group = app.MapGroup("games");
 
             // Get games
-            group.MapGet("/", async (GamesStoreContext dbContext) =>
-    await dbContext.Games
-              .Include(game => game.Genre)
+            group.MapGet("/", async (AppDbContext dbContext) =>
+            await dbContext.Games
+            //   .Include(game => game.GenreId)
            .Select(game => game.ToGameSummuryDto())
            .AsNoTracking()
            .ToListAsync()
-   );
+       );
 
             // Get Game/id
-            group.MapGet("/{id}", async (int id, GamesStoreContext dbContext) =>
+            group.MapGet("/{id}", async (int id, AppDbContext dbContext) =>
             {
                 Game? game = await dbContext.Games.FindAsync(id);
 
@@ -33,7 +33,7 @@ namespace papaute.Controllers
                 .WithName(GetGameEndpointName);
 
             // Get Games
-            group.MapPost("/", async (CreateGameDto newGame, GamesStoreContext dbContext) =>
+            group.MapPost("/", async (CreateGameDto newGame, AppDbContext dbContext) =>
             {
 
                 Game game = newGame.ToEntity();
@@ -47,7 +47,7 @@ namespace papaute.Controllers
 
 
             // Put Games
-            group.MapPut("/{id}", async (int id, UpdateGameDto updateGame, GamesStoreContext dbContext) =>
+            group.MapPut("/{id}", async (int id, UpdateGameDto updateGame, AppDbContext dbContext) =>
             {
                 var existingGame = await dbContext.Games.FindAsync(id);
 
@@ -66,7 +66,7 @@ namespace papaute.Controllers
             });
 
             // Delete Game
-            group.MapDelete("/{id}", async (GamesStoreContext dbContext, int id) =>
+            group.MapDelete("/{id}", async (AppDbContext dbContext, int id) =>
             {
                 await dbContext.Games
                               .Where(game => game.Id == id)
