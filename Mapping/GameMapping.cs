@@ -22,7 +22,7 @@ namespace papaute.Mapping
             return new(
                    game.Id,
                    game.Name,
-                   game.GenreId.ToString(),
+                   game.GenreId,
                    game.Price,
                    game.ReleaseDate
                );
