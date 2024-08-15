@@ -12,7 +12,8 @@ namespace papaute.Mapping
                 Name = game.Name,
                 GenreId = game.GenreId,
                 Price = game.Price,
-                ReleaseDate = game.ReleaseDate
+                ReleaseDate = game.ReleaseDate,
+                UserId = game.UserId,
             };
         }
 
@@ -24,7 +25,8 @@ namespace papaute.Mapping
                    game.Name,
                    game.GenreId,
                    game.Price,
-                   game.ReleaseDate
+                   game.ReleaseDate,
+                   game.UserId
                );
         }
         public static GameDetailsDto ToGameDetailsDto(this Game game)
@@ -34,7 +36,8 @@ namespace papaute.Mapping
                    game.Name,
                    game.GenreId,
                    game.Price,
-                   game.ReleaseDate
+                   game.ReleaseDate,
+                   game.UserId
                );
         }
         public static Game ToGameUpdateDto(this UpdateGameDto game, int id)
@@ -45,7 +48,8 @@ namespace papaute.Mapping
                 Name = game.Name,
                 GenreId = game.GenreId,
                 Price = game.Price,
-                ReleaseDate = game.ReleaseDate
+                ReleaseDate = game.ReleaseDate,
+                UserId = game.UserId
             };
         }
 

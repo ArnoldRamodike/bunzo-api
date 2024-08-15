@@ -5,6 +5,7 @@ namespace papaute.Dtos
     string Name,
     int GenreId,
     Decimal Price,
-    DateOnly ReleaseDate
+    DateOnly ReleaseDate,
+    string UserId
     );
 }
