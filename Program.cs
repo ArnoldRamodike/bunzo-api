@@ -48,6 +48,7 @@ var summaries = new[]
 };
 
 app.MapGemesController();
+app.MapGemesController();
 app.MapControllers();
 app.MapGet("/weatherforecast", () =>
 {
