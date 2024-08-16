@@ -3,9 +3,9 @@ namespace papaute.Dtos
   public record class GameSummryDto(
     int Id,
     string Name,
-    int GenreId,
+    string Genre,
     Decimal Price,
     DateOnly ReleaseDate,
-    string UserId
+    string Users
     );
 }

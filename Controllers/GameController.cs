@@ -17,7 +17,8 @@ namespace papaute.Controllers
             // Get games
             group.MapGet("/", async (AppDbContext dbContext) =>
             await dbContext.Games
-            //   .Include(game => game.GenreId)
+           .Include(game => game.Genre)
+           .Include(game => game.User)
            .Select(game => game.ToGameSummuryDto())
            .AsNoTracking()
            .ToListAsync()
@@ -26,7 +27,11 @@ namespace papaute.Controllers
             // Get Game/id
             group.MapGet("/{id}", async (int id, AppDbContext dbContext) =>
             {
-                Game? game = await dbContext.Games.FindAsync(id);
+                Game? game = await dbContext.Games
+                    .Include(g => g.Genre)
+                    .Include(g => g.User)
+                    .FirstOrDefaultAsync(g => g.Id == id);
+
 
                 return game is null ? Results.NotFound() : Results.Ok(game.ToGameDetailsDto());
             })

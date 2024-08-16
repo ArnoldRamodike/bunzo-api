@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+
 
 namespace papaute.Models
 {
@@ -15,6 +15,6 @@ namespace papaute.Models
         public DateOnly ReleaseDate { get; set; }
 
         public required string UserId { get; set; }
-        public IdentityUser? User { get; set; }
+        public Users? User { get; set; }
     }
 }

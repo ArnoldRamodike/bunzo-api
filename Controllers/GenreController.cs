@@ -8,7 +8,8 @@ namespace papaute.Controllers
         public static GenreDto ToEntity(this Genre genre)
         {
             return new GenreDto(
-                genre.Id, genre.Name
+                genre.Id,
+                genre.Name
             );
         }
     }

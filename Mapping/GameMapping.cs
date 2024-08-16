@@ -23,10 +23,10 @@ namespace papaute.Mapping
             return new(
                    game.Id,
                    game.Name,
-                   game.GenreId,
+                   game.Genre!.Name,
                    game.Price,
                    game.ReleaseDate,
-                   game.UserId
+                   game.User!.UserName!
                );
         }
         public static GameDetailsDto ToGameDetailsDto(this Game game)
@@ -34,10 +34,10 @@ namespace papaute.Mapping
             return new(
                    game.Id,
                    game.Name,
-                   game.GenreId,
+                   game.Genre!.Name,
                    game.Price,
                    game.ReleaseDate,
-                   game.UserId
+                   game.User!.UserName!
                );
         }
         public static Game ToGameUpdateDto(this UpdateGameDto game, int id)
