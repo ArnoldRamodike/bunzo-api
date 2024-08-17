@@ -29,6 +29,15 @@ namespace papaute.Mapping
                    game.User!.UserName!
                );
         }
+        public static UserSummryDto ToUserSummryDto(this Users game)
+        {
+            return new(
+                   game.Id,
+                   game.UserName!,
+                   game.Email!,
+                   game.FullName!
+               );
+        }
         public static GameDetailsDto ToGameDetailsDto(this Game game)
         {
             return new(

@@ -12,7 +12,7 @@ namespace papaute.Controllers
 
         public static RouteGroupBuilder MapGemesController(this WebApplication app)
         {
-            var group = app.MapGroup("games");
+            var group = app.MapGroup("/api/games");
 
             // Get games
             group.MapGet("/", async (AppDbContext dbContext) =>
@@ -20,6 +20,13 @@ namespace papaute.Controllers
            .Include(game => game.Genre)
            .Include(game => game.User)
            .Select(game => game.ToGameSummuryDto())
+           .AsNoTracking()
+           .ToListAsync()
+       );
+            // Get games
+            group.MapGet("/users", async (AppDbContext dbContext) =>
+            await dbContext.Users
+           .Select(user => user.ToUserSummryDto())
            .AsNoTracking()
            .ToListAsync()
        );
