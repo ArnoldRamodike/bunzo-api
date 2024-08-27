@@ -40,14 +40,17 @@ namespace papaute.Mapping
         }
         public static GameDetailsDto ToGameDetailsDto(this Game game)
         {
-            return new(
-                   game.Id,
-                   game.Name,
-                   game.Genre!.Name,
-                   game.Price,
-                   game.ReleaseDate,
-                   game.User!.UserName!
-               );
+            var genreName = game.Genre?.Name ?? "Unknown Genre";
+            var userName = game.User?.UserName ?? "Unknown User";
+
+            return new GameDetailsDto(
+                game.Id,
+                game.Name,
+                genreName,
+                game.Price,
+                game.ReleaseDate,
+                userName
+            );
         }
         public static Game ToGameUpdateDto(this UpdateGameDto game, int id)
         {

@@ -19,13 +19,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddIdentity<Users, IdentityRole>(options =>
   {
-      options.Password.RequireNonAlphanumeric = false;
-      options.Password.RequireDigit = false;
-      options.Password.RequiredLength = 6;
-      options.Password.RequireLowercase = false;
-      options.SignIn.RequireConfirmedPhoneNumber = false;
-      options.SignIn.RequireConfirmedEmail = false;
-      options.User.RequireUniqueEmail = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireLowercase = false;
+    options.SignIn.RequireConfirmedPhoneNumber = false;
+    options.SignIn.RequireConfirmedEmail = false;
+    options.User.RequireUniqueEmail = true;
   }
 ).AddEntityFrameworkStores<AppDbContext>()
   .AddDefaultTokenProviders();
@@ -34,8 +34,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+  app.UseSwagger();
+  app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

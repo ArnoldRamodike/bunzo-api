@@ -23,7 +23,7 @@ namespace papaute.Controllers
            .AsNoTracking()
            .ToListAsync()
        );
-            // Get games
+            // Get users?
             group.MapGet("/users", async (AppDbContext dbContext) =>
             await dbContext.Users
            .Select(user => user.ToUserSummryDto())
@@ -44,7 +44,7 @@ namespace papaute.Controllers
             })
                 .WithName(GetGameEndpointName);
 
-            // Get Games
+            // Post Games
             group.MapPost("/", async (CreateGameDto newGame, AppDbContext dbContext) =>
             {
 
@@ -53,6 +53,7 @@ namespace papaute.Controllers
                 await dbContext.Games.AddAsync(game);
                 await dbContext.SaveChangesAsync();
 
+                game = await dbContext.Games.Include(g => g.Genre).Include(g => g.User).FirstOrDefaultAsync(g => g.Id == game.Id);
 
                 return Results.CreatedAtRoute(GetGameEndpointName, new { id = game.Id }, game.ToGameDetailsDto());
             });
