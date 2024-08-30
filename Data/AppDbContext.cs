@@ -13,6 +13,8 @@ namespace papaute.Data
 
         public DbSet<Game> Games => Set<Game>();
         public DbSet<Genre> Genres => Set<Genre>();
+        public DbSet<Music> Music => Set<Music>();
+        public DbSet<Category> Categories => Set<Category>();
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -27,6 +29,14 @@ namespace papaute.Data
                 new { Id = 3, Name = "Sports" },
                 new { Id = 4, Name = "Racing" },
                 new { Id = 5, Name = "Kids" }
+            );
+
+            builder.Entity<Category>().HasData(
+                new { Id = 1, Name = "Pop" },
+                new { Id = 2, Name = "Rock" },
+                new { Id = 3, Name = "R&B" },
+                new { Id = 4, Name = "Dance" },
+                new { Id = 5, Name = "Soul" }
             );
         }
 
